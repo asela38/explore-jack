@@ -3,13 +3,20 @@ class Block {
     field int memAddress;
     field int location;
     field int offset;
-
+    field int pass;
+    field boolean hit;
+    field int current;
+    field int magic;
+   
     /** Constructs a new car with the given location and width. */
-    constructor Block new() {
+    constructor Block new(int i_magic) {
         let INIT_LOCATION = 10 ;
-        let location = INIT_LOCATION;
+        let location = INIT_LOCATION + i_magic;
         let offset = 0;
-        do show();
+        let hit = false;
+        let pass = 0;
+        let magic = i_magic;
+        do moveDown();
         return this;
     }
 
@@ -18,6 +25,14 @@ class Block {
         do Memory.deAlloc(this);
         return;
     }
+    
+    method boolean isHit() {
+        return hit;
+    }
+    
+    method int pass() {
+        return pass;
+    }
 
 
     /** Moves the bat one step in the bat's direction. */
@@ -25,13 +40,15 @@ class Block {
  
         do hide();
         if(location < 7000) {
-            let location = location + 128;
+            let location = location + 256;
         } else {
             let offset = offset + 17;
-            while(offset > 11) {
-                let offset = offset - 11;
+            while(offset > 1) {
+                let offset = offset - 2;
             }
-            let location = INIT_LOCATION + offset;
+            let offset = offset;
+            let location = INIT_LOCATION + offset + magic;
+            let pass = pass + 1;
         }
         do show();
 
@@ -41,6 +58,41 @@ class Block {
     method void show() {
 
         let memAddress = 16384+location;
+        let current = Memory.peek(memAddress+0);
+        if((~( current = 0))) { let hit = true; }
+        let current = Memory.peek(memAddress+32);
+        if(~( current = 0)) { let hit = true; }
+        let current = Memory.peek(memAddress+64);
+        if(~( current = 0)) { let hit = true; }
+        let current = Memory.peek(memAddress+96);
+        if(~( current = 0)) { let hit = true; }
+        
+        let current = Memory.peek(memAddress+128);
+        if(~( current = 0)) { let hit = true; }
+        let current = Memory.peek(memAddress+160);
+        if(~( current = 0)) { let hit = true; }      
+        let current = Memory.peek(memAddress+192);
+        if(~( current = 0)) { let hit = true; }
+        let current = Memory.peek(memAddress+224);
+        if(~( current = 0)) { let hit = true; }
+        let current = Memory.peek(memAddress+256);
+        if(~( current = 0)) { let hit = true; }
+        let current = Memory.peek(memAddress+288);
+        if(~( current = 0)) { let hit = true; }
+        let current = Memory.peek(memAddress+320);
+        if(~( current = 0)) { let hit = true; }
+        let current = Memory.peek(memAddress+352);
+        if(~( current = 0)) { let hit = true; }
+        let current = Memory.peek(memAddress+384);
+        if(~( current = 0)) { let hit = true; }
+        let current = Memory.peek(memAddress+416);
+        if(~( current = 0)) { let hit = true; }
+        let current = Memory.peek(memAddress+448);
+        if(~( current = 0)) { let hit = true; }
+        let current = Memory.peek(memAddress+480);
+        if(~( current = 0)) { let hit = true; }
+        
+    
         do Memory.poke(memAddress+0, -1);
         do Memory.poke(memAddress+32, -8185);
         do Memory.poke(memAddress+64, -4081);

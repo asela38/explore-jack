@@ -49,7 +49,7 @@ call Car.hide 1
 pop temp 0
 push this 1
 push static 0
-push constant 11
+push constant 2
 add
 lt
 if-goto IF_TRUE0

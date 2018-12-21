@@ -3,15 +3,17 @@ class Game {
     static Game instance; // the singelton, a Pong game instance     
     field Car car;
     field Block block;
+    field Block block2;
     field boolean exit;       // true when the game is over
     
     
     constructor Game new() {
 	    do Screen.clearScreen();
         do Screen.drawLine(150, 0, 150, 255);
-        do Screen.drawLine(358, 0, 358, 255);
+        do Screen.drawLine(218, 0, 218, 255);
         let car = Car.new();
-        let block = Block.new();
+        let block = Block.new(0);
+        let block2 = Block.new(1);
 	    do Output.moveCursor(22,0);
 	    do Output.printString("Score: 0");
         
@@ -35,6 +37,7 @@ class Game {
     method void dispose() {
         do car.dispose();
 	    do block.dispose();
+        do block2.dispose();
         do Memory.deAlloc(this);
         return;
     }
@@ -47,11 +50,7 @@ class Game {
         while (~exit) {
             // waits for a key to be pressed.
             while ((key = 0) & (~exit)) {
-                let key = Keyboard.keyPressed(); 
-
-                do block.moveDown();
-                
-                do Sys.wait(50);
+                let key = move();
             }
 
             if (key = 130) {    
@@ -68,11 +67,7 @@ class Game {
 
             // Waits for the key to be released.
             while ((~(key = 0)) & (~exit)) {
-                let key = Keyboard.keyPressed();
-                
-                do block.moveDown();
-
-                do Sys.wait(50);
+                let key = move();
             }
         }
 
@@ -82,6 +77,24 @@ class Game {
 	    }
             
         return;
+    }
+    
+    method char move() {
+        var char key;
+        
+        let key = Keyboard.keyPressed();
+                
+        do block.moveDown();
+        do block2.moveDown();
+        
+        let exit = block.isHit() | block2.isHit();
+        
+        do Output.moveCursor(22,7);
+        do Output.printInt(block.pass());
+
+        do Sys.wait(50);
+        
+        return key;
     }
 
 

@@ -33,7 +33,7 @@ class Car {
     method void moveLeft() {
     
         do hide();
-        if(location < ( INIT_LOCATION + 11 ) ) {
+        if(location < ( INIT_LOCATION + 2 ) ) {
             let location = location  + 1;
         }
         do show();
