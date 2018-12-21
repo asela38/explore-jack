@@ -1,0 +1,188 @@
+function Game.new 0
+push constant 3
+call Memory.alloc 1
+pop pointer 0
+call Screen.clearScreen 0
+pop temp 0
+push constant 150
+push constant 0
+push constant 150
+push constant 255
+call Screen.drawLine 4
+pop temp 0
+push constant 358
+push constant 0
+push constant 358
+push constant 255
+call Screen.drawLine 4
+pop temp 0
+call Car.new 0
+pop this 0
+call Block.new 0
+pop this 1
+push constant 22
+push constant 0
+call Output.moveCursor 2
+pop temp 0
+push constant 8
+call String.new 1
+push constant 83
+call String.appendChar 2
+push constant 99
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 58
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 48
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+push constant 0
+pop this 2
+push pointer 0
+return
+function Game.newInstance 0
+call Game.new 0
+pop static 0
+push constant 0
+return
+function Game.getInstance 0
+push static 0
+return
+function Game.dispose 0
+push argument 0
+pop pointer 0
+push this 0
+call Car.dispose 1
+pop temp 0
+push this 1
+call Block.dispose 1
+pop temp 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return
+function Game.run 1
+push argument 0
+pop pointer 0
+label WHILE_EXP0
+push this 2
+not
+not
+if-goto WHILE_END0
+label WHILE_EXP1
+push local 0
+push constant 0
+eq
+push this 2
+not
+and
+not
+if-goto WHILE_END1
+call Keyboard.keyPressed 0
+pop local 0
+push this 1
+call Block.moveDown 1
+pop temp 0
+push constant 50
+call Sys.wait 1
+pop temp 0
+goto WHILE_EXP1
+label WHILE_END1
+push local 0
+push constant 130
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 0
+call Car.moveRight 1
+pop temp 0
+goto IF_END0
+label IF_FALSE0
+push local 0
+push constant 132
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push this 0
+call Car.moveLeft 1
+pop temp 0
+goto IF_END1
+label IF_FALSE1
+push local 0
+push constant 140
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push constant 0
+not
+pop this 2
+label IF_FALSE2
+label IF_END1
+label IF_END0
+label WHILE_EXP2
+push local 0
+push constant 0
+eq
+not
+push this 2
+not
+and
+not
+if-goto WHILE_END2
+call Keyboard.keyPressed 0
+pop local 0
+push this 1
+call Block.moveDown 1
+pop temp 0
+push constant 50
+call Sys.wait 1
+pop temp 0
+goto WHILE_EXP2
+label WHILE_END2
+goto WHILE_EXP0
+label WHILE_END0
+push this 2
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push constant 10
+push constant 27
+call Output.moveCursor 2
+pop temp 0
+push constant 9
+call String.new 1
+push constant 71
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 109
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 79
+call String.appendChar 2
+push constant 118
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+label IF_FALSE3
+push constant 0
+return

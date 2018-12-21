@@ -1,0 +1,85 @@
+class Block {
+    static int INIT_LOCATION;
+    field int memAddress;
+    field int location;
+    field int offset;
+
+    /** Constructs a new car with the given location and width. */
+    constructor Block new() {
+        let INIT_LOCATION = 10 ;
+        let location = INIT_LOCATION;
+        let offset = 0;
+        do show();
+        return this;
+    }
+
+    /** Deallocates the object's memory. */
+    method void dispose() {
+        do Memory.deAlloc(this);
+        return;
+    }
+
+
+    /** Moves the bat one step in the bat's direction. */
+    method void moveDown() {
+ 
+        do hide();
+        if(location < 7000) {
+            let location = location + 128;
+        } else {
+            let offset = offset + 17;
+            while(offset > 11) {
+                let offset = offset - 11;
+            }
+            let location = INIT_LOCATION + offset;
+        }
+        do show();
+
+        return;
+    }
+
+    method void show() {
+
+        let memAddress = 16384+location;
+        do Memory.poke(memAddress+0, -1);
+        do Memory.poke(memAddress+32, -8185);
+        do Memory.poke(memAddress+64, -4081);
+        do Memory.poke(memAddress+96, -18403);
+        do Memory.poke(memAddress+128, -25543);
+        do Memory.poke(memAddress+160, -29071);
+        do Memory.poke(memAddress+192, -30751);
+        do Memory.poke(memAddress+224, -31807);
+        do Memory.poke(memAddress+256, -31807);
+        do Memory.poke(memAddress+288, -30751);
+        do Memory.poke(memAddress+320, -29071);
+        do Memory.poke(memAddress+352, -25543);
+        do Memory.poke(memAddress+384, -18403);
+        do Memory.poke(memAddress+416, -4081);
+        do Memory.poke(memAddress+448, -8185);
+        do Memory.poke(memAddress+480, -1);
+        return;
+    }
+    
+    method void hide() {
+
+        let memAddress = 16384+location;
+        do Memory.poke(memAddress+0, 0);
+        do Memory.poke(memAddress+32, 0);
+        do Memory.poke(memAddress+64, 0);
+        do Memory.poke(memAddress+96, 0);
+        do Memory.poke(memAddress+128, 0);
+        do Memory.poke(memAddress+160, 0);
+        do Memory.poke(memAddress+192, 0);
+        do Memory.poke(memAddress+224, 0);
+        do Memory.poke(memAddress+256, 0);
+        do Memory.poke(memAddress+288, 0);
+        do Memory.poke(memAddress+320, 0);
+        do Memory.poke(memAddress+352, 0);
+        do Memory.poke(memAddress+384, 0);
+        do Memory.poke(memAddress+416, 0);
+        do Memory.poke(memAddress+448, 0);
+        do Memory.poke(memAddress+480, 0);
+        return;
+    }
+
+}

@@ -1,10 +1,17 @@
 
 class Main {
 
+    /** Initializes a Game and starts running it. */
 	function void main() {
 
-   return;
+        var Game game;
+        do Game.newInstance();
+        let game = Game.getInstance();
+        do game.run();
+        do game.dispose();
+        return;
 
 	}
 
 }
+ 

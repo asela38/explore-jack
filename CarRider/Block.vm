@@ -1,0 +1,293 @@
+function Block.new 0
+push constant 3
+call Memory.alloc 1
+pop pointer 0
+push constant 10
+pop static 0
+push static 0
+pop this 1
+push constant 0
+pop this 2
+push pointer 0
+call Block.show 1
+pop temp 0
+push pointer 0
+return
+function Block.dispose 0
+push argument 0
+pop pointer 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return
+function Block.moveDown 0
+push argument 0
+pop pointer 0
+push pointer 0
+call Block.hide 1
+pop temp 0
+push this 1
+push constant 7000
+lt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 1
+push constant 128
+add
+pop this 1
+goto IF_END0
+label IF_FALSE0
+push this 2
+push constant 17
+add
+pop this 2
+label WHILE_EXP0
+push this 2
+push constant 11
+gt
+not
+if-goto WHILE_END0
+push this 2
+push constant 11
+sub
+pop this 2
+goto WHILE_EXP0
+label WHILE_END0
+push static 0
+push this 2
+add
+pop this 1
+label IF_END0
+push pointer 0
+call Block.show 1
+pop temp 0
+push constant 0
+return
+function Block.show 0
+push argument 0
+pop pointer 0
+push constant 16384
+push this 1
+add
+pop this 0
+push this 0
+push constant 0
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push this 0
+push constant 32
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push this 0
+push constant 64
+add
+push constant 4081
+neg
+call Memory.poke 2
+pop temp 0
+push this 0
+push constant 96
+add
+push constant 18403
+neg
+call Memory.poke 2
+pop temp 0
+push this 0
+push constant 128
+add
+push constant 25543
+neg
+call Memory.poke 2
+pop temp 0
+push this 0
+push constant 160
+add
+push constant 29071
+neg
+call Memory.poke 2
+pop temp 0
+push this 0
+push constant 192
+add
+push constant 30751
+neg
+call Memory.poke 2
+pop temp 0
+push this 0
+push constant 224
+add
+push constant 31807
+neg
+call Memory.poke 2
+pop temp 0
+push this 0
+push constant 256
+add
+push constant 31807
+neg
+call Memory.poke 2
+pop temp 0
+push this 0
+push constant 288
+add
+push constant 30751
+neg
+call Memory.poke 2
+pop temp 0
+push this 0
+push constant 320
+add
+push constant 29071
+neg
+call Memory.poke 2
+pop temp 0
+push this 0
+push constant 352
+add
+push constant 25543
+neg
+call Memory.poke 2
+pop temp 0
+push this 0
+push constant 384
+add
+push constant 18403
+neg
+call Memory.poke 2
+pop temp 0
+push this 0
+push constant 416
+add
+push constant 4081
+neg
+call Memory.poke 2
+pop temp 0
+push this 0
+push constant 448
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push this 0
+push constant 480
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Block.hide 0
+push argument 0
+pop pointer 0
+push constant 16384
+push this 1
+add
+pop this 0
+push this 0
+push constant 0
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push this 0
+push constant 32
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push this 0
+push constant 64
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push this 0
+push constant 96
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push this 0
+push constant 128
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push this 0
+push constant 160
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push this 0
+push constant 192
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push this 0
+push constant 224
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push this 0
+push constant 256
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push this 0
+push constant 288
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push this 0
+push constant 320
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push this 0
+push constant 352
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push this 0
+push constant 384
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push this 0
+push constant 416
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push this 0
+push constant 448
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push this 0
+push constant 480
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
