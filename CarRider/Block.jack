@@ -1,12 +1,15 @@
+/**
+ Block Class
+*/
 class Block {
-    static int INIT_LOCATION;
-    field int memAddress;
-    field int location;
-    field int offset;
-    field int pass;
-    field boolean hit;
-    field int current;
-    field int magic;
+    static int INIT_LOCATION; // Initial location for the block to be created
+    field int memAddress; // memory Address
+    field int location;   // location for the block
+    field int offset;     // Offset for the block for next cycle
+    field int pass;       // Number of blocks successfully passed
+    field boolean hit;    // whether the block hit the car
+    field int current;    // Current memory
+    field int magic;      // Magic number for the block ( Unique id )
    
     /** Constructs a new car with the given location and width. */
     constructor Block new(int i_magic) {
@@ -26,10 +29,12 @@ class Block {
         return;
     }
     
+    /** Return Hit status */
     method boolean isHit() {
         return hit;
     }
     
+    /** Return pass count */
     method int pass() {
         return pass;
     }
@@ -40,7 +45,7 @@ class Block {
  
         do hide();
         if(location < 7000) {
-            let location = location + 256;
+            let location = location + 192;
         } else {
             let offset = offset + 17;
             while(offset > 1) {
@@ -55,10 +60,14 @@ class Block {
         return;
     }
 
+    
+    /** Show the block */
     method void show() {
 
         let memAddress = 16384+location;
         let current = Memory.peek(memAddress+0);
+        
+        // Check block hit car
         if((~( current = 0))) { let hit = true; }
         let current = Memory.peek(memAddress+32);
         if(~( current = 0)) { let hit = true; }
@@ -112,6 +121,7 @@ class Block {
         return;
     }
     
+    /** Erase the block */
     method void hide() {
 
         let memAddress = 16384+location;

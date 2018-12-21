@@ -1,6 +1,8 @@
+/** Car class */
 class Car {
-    static int INIT_LOCATION;
-    field int memAddress;
+
+    static int INIT_LOCATION; /** Initial location */
+    field int memAddress;     
     field int location;
 
     /** Constructs a new car with the given location and width. */
@@ -18,7 +20,7 @@ class Car {
     }
 
 
-    /** Moves the bat one step in the bat's direction. */
+    /** Moves the car right. */
     method void moveRight() {
  
         do hide();
@@ -30,6 +32,7 @@ class Car {
         return;
     }
     
+    /** Moves the car left. */
     method void moveLeft() {
     
         do hide();
@@ -41,6 +44,7 @@ class Car {
         return;
     }
 
+    /** Show car */
     method void show() {
 
         let memAddress = 16384+location;
@@ -60,9 +64,11 @@ class Car {
         do Memory.poke(memAddress+416, -7225);
         do Memory.poke(memAddress+448, -7225);
         do Memory.poke(memAddress+480, 960);
-	return;
+        
+        return;
     }
     
+    /** Hide car */
     method void hide() {
 
         let memAddress = 16384+location;
@@ -82,6 +88,7 @@ class Car {
         do Memory.poke(memAddress+416, 0);
         do Memory.poke(memAddress+448, 0);
         do Memory.poke(memAddress+480, 0);
+        
         return;
     }
 

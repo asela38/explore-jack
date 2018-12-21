@@ -1,4 +1,6 @@
-
+/**
+   Car rider Main Class
+*/
 class Main {
 
     /** Initializes a Game and starts running it. */
@@ -10,8 +12,6 @@ class Main {
         do game.run();
         do game.dispose();
         return;
-
 	}
-
 }
  

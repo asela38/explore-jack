@@ -1,12 +1,16 @@
+/**
+Main game controller;
+*/
 class Game {
 
-    static Game instance; // the singelton, a Pong game instance     
-    field Car car;
-    field Block block;
-    field Block block2;
-    field boolean exit;       // true when the game is over
+    static Game instance; // the singelton, a game instance     
+    field Car car;        // Car instance
+    field Block block;    // Block 1
+    field Block block2;   // Block 2
+    field boolean exit;   // true when the game is over
     
     
+    /** Create an new game */
     constructor Game new() {
 	    do Screen.clearScreen();
         do Screen.drawLine(150, 0, 150, 255);
@@ -22,18 +26,18 @@ class Game {
         return this;
     }
 
-    /** Creates an instance of Pong game, and stores it. */
+    /** Creates an instance of game, and stores it. */
     function void newInstance() {
         let instance = Game.new();
         return;
     }
     
-    /** Returns the single instance of this Pong game. */
+    /** Returns the single instance of this game. */
     function Game getInstance() {
         return instance;
     }
     
-        /** Deallocates the object's memory. */
+    /** Deallocates the object's memory. */
     method void dispose() {
         do car.dispose();
 	    do block.dispose();
@@ -43,7 +47,7 @@ class Game {
     }
 
     
-      /** Starts the game, and lets inputs from the user that control
+    /** Starts the game, and lets inputs from the user that control
      *  the bat's movement direction. */
     method void run() {
         var char key;
@@ -79,6 +83,7 @@ class Game {
         return;
     }
     
+    /** Do game move to next screen */
     method char move() {
         var char key;
         
